@@ -17,10 +17,10 @@
         </div>           
         <div id="content">
             <div class="row">
-                <div class="col-lg-6 col-md-12">
+                <div class="span6">
                     {leftside}
                 </div>
-                <div class="col-lg-6 col-md-12">
+                <div class="span6">
                     {rightside}
                 </div>
             </div>
