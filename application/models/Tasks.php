@@ -12,6 +12,12 @@ class Tasks extends CSV_Model {
 	function makeCategorizedPanel($tasks)
 	{
 		$parms = ['display_tasks' => $this->tasks->getCategorizedTasks()];
+
+		// INSERT the next two lines
+		$role = $this->session->userdata('userrole');
+		$parms['completer'] = ($role == ROLE_OWNER) ? '/views/complete' : '#';
+		return $this->parser->parse('by_priority', $parms, true);
+
 		return $this->parser->parse('by_category', $parms, true);
 	}
 
