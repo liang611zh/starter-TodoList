@@ -45,8 +45,6 @@ class Views extends Application
         $role = $this->session->userdata('userrole');
         $parms['completer'] = ($role == ROLE_OWNER) ? '/views/complete' : '#';
         return $this->parser->parse('by_priority', $parms, true);
-
-    	return $this->parser->parse('by_priority',$parms,true);
     }
 
     // complete flagged items
