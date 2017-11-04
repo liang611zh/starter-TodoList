@@ -21,6 +21,7 @@
     <filter>
         <whitelist>
             <directory>./system/</directory>
+			<directory>./application/models</directory>
         </whitelist>
     </filter>
     <logging>
