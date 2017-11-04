@@ -2,6 +2,10 @@
 
 require '../application/models/Task.php';
 
+if(!class_exists('PHPUnit_Framework_TestCase')) {
+  class_alias('PHPUnit\Framework\TestCase','PHPUnit_Framework_TestCase');
+}
+
 class TaskTest extends PHPUnit_Framework_TestCase
 {
   private $testTask;
