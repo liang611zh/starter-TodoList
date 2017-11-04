@@ -4,7 +4,7 @@
  class TaskListTest extends PHPUnit_Framework_TestCase
   {
     private $CI;
-    private $t;
+    private $task;
 
     //only CI setup goes here
     public function setUp()
