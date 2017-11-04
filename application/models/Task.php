@@ -1,73 +1,62 @@
 <?php
 
-
+require '../application/core/Entity.php';
 class Task extends Entity {
 
 	protected $task;
-	protected $id;
 	protected $priority;
 	protected $size;
 	protected $group;
-	protected $deadline;
-	protected $status;
-	protected $flag;
 
 
-	private function echoExecption($err) {
-		throw new Exception($err);
-	}
-
+	//check the task
 	public function setTask($value) {
-		$err = "Rule for task should be alpha_numeric_spaces|max_length[64]";
 
 		$strsize = strlen($value);
 		if(!is_string($value) || $strsize > 64) {
-			echoExecption($err);
+			return false;
 		}
 
 		for($x = 0;$x < $strsize; $x++) {
 			$c = $value[$x];
-			if(!ctype_alnum($c) || !ctype_space($c)) {
-				echoExecption($err);
+			if(!(ctype_alnum($c) || ctype_space($c))) {
+				return false;
 			}
 		}
 		$this->task = $value;
-		return $this;
+		return true;
 	}
-
+	//check the priority
 	public function setPriority($value) {
-		$err = "Rule for priority should be integer|less_than[4].";
 
 		if(is_int($value) && $value < 4) {
 			$this->priority = $value;
-			return $this;
+			return true;
 		} 
 
-		echoExecption($err);
+		return false;
 
 	}
-
+	//check the size
 	public function setSize($value) {
-		$err = "Rule for size should be integer|less_than[4].";
 
 		if(is_int($value) && $value < 4) {
 			$this->size = $value;
-			return $this;
+			return true;
 		} 
 
-		echoExecption($err);
+		return false;
 		
 	}
-
-	public function setLabel($value) {
-		$err = "Rule for label should be integer|less_than[4].";
+	//check the group
+	public function setGroup($value) {
 
 		if(is_int($value) && $value < 5) {
-			$this->label = $value;
-			return $this;
+			$this->group = $value;
+			return true;
 		} 
 
-		echoExecption($err);
+		return false;
 	}
 
 }
