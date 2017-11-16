@@ -2,6 +2,8 @@
 // pull in the interface we are supposed to implement
 // Note that it doesn't have to follow the normal CodeIgniter naming rules!
 require_once 'DataMapper.php';
+include_once 'Memory_Model.php';
+include_once 'XML_Model.php';
 
 /**
  * Generic data access model, for an RDB.
