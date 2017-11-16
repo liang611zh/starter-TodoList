@@ -1,5 +1,5 @@
-<DocumentElement>
-  <tasks>
+<tasks>
+  <taskitem>
     <id>1</id>
     <task>COMP1234 assignment</task>
     <priority>1</priority>
@@ -8,8 +8,8 @@
     <deadline>20170219</deadline>
     <status>1</status>
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>2</id>
     <task>Mow the lawn</task>
     <priority>2</priority>
@@ -18,8 +18,8 @@
     <deadline />
     <status>2</status>
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>3</id>
     <task>Wash the car</task>
     <priority>2</priority>
@@ -28,8 +28,8 @@
     <deadline />
     <status />
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>4</id>
     <task>Paint the fence</task>
     <priority>1</priority>
@@ -38,8 +38,8 @@
     <deadline />
     <status />
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>6</id>
     <task>Intramural hockey game</task>
     <priority>1</priority>
@@ -48,8 +48,8 @@
     <deadline />
     <status />
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>7</id>
     <task>Canucks hockey game</task>
     <priority>3</priority>
@@ -58,8 +58,8 @@
     <deadline>20170305</deadline>
     <status>2</status>
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>8</id>
     <task>Buy steel-toed boots</task>
     <priority>2</priority>
@@ -68,8 +68,8 @@
     <deadline />
     <status />
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>9</id>
     <task>Learn French</task>
     <priority>1</priority>
@@ -78,8 +78,8 @@
     <deadline>20161231</deadline>
     <status>1</status>
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>10</id>
     <task>Hit the gym</task>
     <priority>2</priority>
@@ -88,8 +88,8 @@
     <deadline />
     <status />
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>11</id>
     <task>Pay bills</task>
     <priority>3</priority>
@@ -98,8 +98,8 @@
     <deadline />
     <status>2</status>
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>12</id>
     <task>Meet George</task>
     <priority>2</priority>
@@ -108,8 +108,8 @@
     <deadline />
     <status />
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>13</id>
     <task>Buy milk &amp; bread</task>
     <priority>2</priority>
@@ -118,8 +118,8 @@
     <deadline />
     <status />
     <flag>1</flag>
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>14</id>
     <task>Read War &amp; Peace</task>
     <priority>1</priority>
@@ -128,8 +128,8 @@
     <deadline />
     <status>2</status>
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>15</id>
     <task>Organize the study</task>
     <priority>1</priority>
@@ -138,8 +138,8 @@
     <deadline />
     <status />
     <flag />
-  </tasks>
-  <tasks>
+  </taskitem>
+  <taskitem>
     <id>16</id>
     <task>Finish lab6</task>
     <priority>3</priority>
@@ -148,5 +148,5 @@
     <deadline />
     <status>2</status>
     <flag />
-  </tasks>
-</DocumentElement>
+  </taskitem>
+</tasks>
