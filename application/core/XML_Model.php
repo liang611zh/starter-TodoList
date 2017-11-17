@@ -10,7 +10,7 @@ class XML_Model extends Memory_Model {
 	{	
 
 		parent::__construct();
-
+		$origin  = realpath($origin);
 		// guess at persistent name if not specified
 			if ($origin == null)
 				$this->_origin = get_class($this);
@@ -36,64 +36,57 @@ class XML_Model extends Memory_Model {
 	protected function load()
 	{
 
-		var_dump(realpath($this->_origin));
+		//var_dump(realpath($this->_origin));
 		if (file_exists(realpath($this->_origin))) {
 		    $this->xml = simplexml_load_file(realpath($this->_origin));
 
 		    $xmlarray =$this->xml;
 
 		    //if it is empty; 
-		    if(count($xmlarray) == 0) {
+		    if(empty($xmlarray)) {
 		    	return;
 		    }
 
-
+		    //get all xmlonjects into $xmlcontent
 		    $rootkey = key($xmlarray);
-
-		    
-
 		    $xmlcontent = (object)$xmlarray->$rootkey;
-
-		    //var_dump($xmlcontent);
 
 		    $keyfield = array();
 		    $first = true;
 
 		    //if it is empty; 
-		    if(count($xmlcontent) == 0) {
+		    if(empty($xmlcontent)) {
 		    	return;
 		    }
 
+		    $dataindex = 1;
+		    $first = true;
+		    foreach ($xmlcontent as $oj) {
+		    	if($first){
+			    	foreach ($oj as $key => $value) {
+			    		$keyfield[] = $key;	
+			    		//var_dump((string)$value);
+			    	}
+			    }
+		    	$first = false; 
 
-		    foreach ((array)$xmlcontent as $key => $value) {
-		    		$keyfield[] = $key;
-		    	
-		    }
+		    	//var_dump($oj->children());
+		    	$one = new stdClass();
 
-		    //construct the key fields array
-		    $this->_fields = $keyfield;
-
-		    foreach ($xmlcontent as $key => $value) {
-		    	if ($first)
-				{
-					// populate field names from first row
-					
-					
-
-				}
-		    	
-		    }
-
-
-		 
-		   var_dump($xmlcontent);
+		    	//get objects one by one
+		    	foreach ($oj as $key => $value) {
+		    		$one->$key = (string)$value;
+		    	}
+		    	$this->_data[$dataindex++] =$one; 
+		    }	
+		 	//var_dump($this->_data);
 		} else {
-		    exit('Failed to open xml database.');
+		    exit('Failed to open the xml file.');
 		}
-		
 
-
-
+		// --------------------
+		// rebuild the keys table
+		$this->reindex();
 	}
 
 	/**
