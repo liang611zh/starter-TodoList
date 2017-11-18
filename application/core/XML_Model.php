@@ -23,7 +23,7 @@ class XML_Model extends Memory_Model {
 
 			// start with an empty collection
 			$this->_data = array(); // an array of objects
-			$this->fields = array(); // an array of strings
+			$this->_fields = array(); // an array of strings
 			// and populate the collection
 			$this->load();
 
@@ -38,7 +38,13 @@ class XML_Model extends Memory_Model {
 
 		//var_dump(realpath($this->_origin));
 		if (file_exists(realpath($this->_origin))) {
+
 		    $this->xml = simplexml_load_file(realpath($this->_origin));
+		    if ($this->xml === false) {
+			      // error so redirect or handle error
+			      header('location: /404.php');
+			      exit;
+			}
 
 		    $xmlarray =$this->xml;
 
@@ -51,7 +57,7 @@ class XML_Model extends Memory_Model {
 		    $rootkey = key($xmlarray);
 		    $xmlcontent = (object)$xmlarray->$rootkey;
 
-		    $keyfield = array();
+		    $keyfieldh = array();
 		    $first = true;
 
 		    //if it is empty; 
@@ -64,9 +70,10 @@ class XML_Model extends Memory_Model {
 		    foreach ($xmlcontent as $oj) {
 		    	if($first){
 			    	foreach ($oj as $key => $value) {
-			    		$keyfield[] = $key;	
+			    		$keyfieldh[] = $key;	
 			    		//var_dump((string)$value);
 			    	}
+			    	$this->_fields = $keyfieldh;
 			    }
 		    	$first = false; 
 
@@ -79,6 +86,8 @@ class XML_Model extends Memory_Model {
 		    	}
 		    	$this->_data[$dataindex++] =$one; 
 		    }	
+
+
 		 	//var_dump($this->_data);
 		} else {
 		    exit('Failed to open the xml file.');
@@ -95,18 +104,32 @@ class XML_Model extends Memory_Model {
 	 */
 	protected function store()
 	{
+		    // var_dump(get_class_methods($this->xml));
+		    // var_dump($this->xml->getName);
+		    
+        	
 		// rebuild the keys table
 		$this->reindex();
-		//---------------------
-		if (($handle = fopen($this->_origin, "w")) !== FALSE)
-		{
-			fputcsv($handle, $this->_fields);
-			foreach ($this->_data as $key => $record)
-				fputcsv($handle, array_values((array) $record));
-			fclose($handle);
-		}
-		// --------------------
-	}
+ 		if (($handle = fopen($this->_origin, "w")) !== FALSE)
+        {
 
+            $xmlDoc = new DOMDocument( "1.0");
+            $xmlDoc->preserveWhiteSpace = false;
+            $xmlDoc->formatOutput = true;
+            $data = $xmlDoc->createElement($this->xml->getName());
+            foreach($this->_data as $key => $value)
+            {
+                $task  = $xmlDoc->createElement($this->xml->children()->getName());
+                foreach ($value as $itemkey => $record ) {
+                    $item = $xmlDoc->createElement($itemkey, htmlspecialchars($record));
+                    $task->appendChild($item);
+                }
+                $data->appendChild($task);
+            }
+            $xmlDoc->appendChild($data);
+            $xmlDoc->saveXML($xmlDoc);
+            $xmlDoc->save($this->_origin);
+        }
 
+}
 }
